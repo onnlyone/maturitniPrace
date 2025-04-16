@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckgp2v2nlewro"]
+
+[ext_resource type="Script" uid="uid://cuyfjsgxfd015" path="res://scripts/gamba/gamba_grid.gd" id="1_314ig"]
+[ext_resource type="PackedScene" uid="uid://diu8r3p1aae0o" path="res://assets/gamba/column.tscn" id="2_u7ygn"]
+[ext_resource type="Script" uid="uid://7y461ojldnv8" path="res://scripts/gamba/gamba_column_0.gd" id="3_uwbyp"]
+[ext_resource type="Script" uid="uid://bat53a7rmspm6" path="res://scripts/gamba/gamba_column_1.gd" id="4_qr7cm"]
+[ext_resource type="Script" uid="uid://dx50uo3n3kit8" path="res://scripts/gamba/gamba_column_2.gd" id="5_pmsyf"]
+[ext_resource type="Script" uid="uid://di2lyhbrgo1qj" path="res://scripts/gamba/gamba_column_3.gd" id="6_nq3r6"]
+[ext_resource type="Script" uid="uid://dybfd2q5538h2" path="res://scripts/gamba/gamba_column_4.gd" id="7_4udes"]
+
+[node name="gambaGrid" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -552.0
+offset_bottom = -269.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_314ig")
+
+[node name="Column0" parent="." instance=ExtResource("2_u7ygn")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("3_uwbyp")
+
+[node name="Column1" parent="." instance=ExtResource("2_u7ygn")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 132.0
+offset_right = 132.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("4_qr7cm")
+
+[node name="Column2" parent="." instance=ExtResource("2_u7ygn")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 264.0
+offset_right = 264.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("5_pmsyf")
+
+[node name="Column3" parent="." instance=ExtResource("2_u7ygn")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 396.0
+offset_right = 396.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("6_nq3r6")
+
+[node name="Column4" parent="." instance=ExtResource("2_u7ygn")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 528.0
+offset_right = 528.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("7_4udes")
+
+[connection signal="roll" from="." to="Column0" method="_on_gamba_main_roll"]
+[connection signal="roll" from="." to="Column1" method="_on_gamba_main_roll"]
+[connection signal="roll" from="." to="Column2" method="_on_gamba_main_roll"]
+[connection signal="roll" from="." to="Column3" method="_on_gamba_main_roll"]
+[connection signal="roll" from="." to="Column4" method="_on_gamba_main_roll"]
+[connection signal="rolled" from="Column4" to="." method="_on_column_4_rolled"]

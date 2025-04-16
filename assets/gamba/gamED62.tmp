@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckgp2v2nlewro"]
+
+[ext_resource type="Script" path="res://scripts/gamba_main.gd" id="1_314ig"]
+[ext_resource type="Script" path="res://scripts/gamba_column.gd" id="2_oasuk"]
+[ext_resource type="Script" path="res://scripts/gmaba_row.gd" id="3_bu4pd"]
+
+[node name="Gamba" type="Node2D"]
+script = ExtResource("1_314ig")
+
+[node name="Column1" type="Node2D" parent="."]
+script = ExtResource("2_oasuk")
+
+[node name="Row1" type="Node2D" parent="Column1"]
+script = ExtResource("3_bu4pd")
+
+[node name="Row2" type="Node2D" parent="Column1"]
+
+[node name="Row3" type="Node2D" parent="Column1"]
+
+[connection signal="rolled" from="Column1" to="Column1/Row1" method="_on_column_1_rolled"]

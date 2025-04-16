@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://0odqjmwddx78"]
+
+[ext_resource type="PackedScene" uid="uid://bbnr0s5yr5w4m" path="res://assets/bar3d/chair.tscn" id="1_4614b"]
+[ext_resource type="Script" uid="uid://dngaclk5qd244" path="res://scripts/bar3d/3d_bar.gd" id="1_b8620"]
+[ext_resource type="Script" uid="uid://bijg3ljfvm31f" path="res://scripts/bar3d/interact_chair.gd" id="2_b8620"]
+[ext_resource type="PackedScene" uid="uid://bdx0bx0w48ev4" path="res://assets/bar3d/player.tscn" id="3_62l2s"]
+[ext_resource type="Script" uid="uid://cr26iej6blwm2" path="res://scripts/bar3d/player_movement.gd" id="4_6ekuw"]
+[ext_resource type="PackedScene" uid="uid://co2picbflxqvb" path="res://assets/bar3d/bar.tscn" id="5_huahx"]
+[ext_resource type="PackedScene" uid="uid://cebp81bqkshoq" path="res://assets/bar3d/gamba.tscn" id="6_ye2io"]
+[ext_resource type="PackedScene" uid="uid://ql6njrb0qdi2" path="res://assets/bar3d/tavern_keep.tscn" id="8_62l2s"]
+
+[node name="bar3d" type="Node3D"]
+script = ExtResource("1_b8620")
+
+[node name="Chair" parent="." instance=ExtResource("1_4614b")]
+transform = Transform3D(0.677659, 0, 0.735376, 0, 1, 0, -0.735376, 0, 0.677659, 7.06917, 0, 3.37978)
+script = ExtResource("2_b8620")
+prompt_message = ""
+
+[node name="Player" parent="." instance=ExtResource("3_62l2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("4_6ekuw")
+
+[node name="Bar" parent="." instance=ExtResource("5_huahx")]
+
+[node name="Gamba" parent="." instance=ExtResource("6_ye2io")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 3.76495)
+prompt_message = "Press E to lock in"
+
+[node name="TavernKeep" parent="." instance=ExtResource("8_62l2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39381, 0, 0)
+prompt_message = "Press E to open shop"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="interacted" from="Chair" to="Chair" method="_on_interacted"]
+[connection signal="sit" from="Chair" to="Player" method="_on_chair_sit"]
+[connection signal="interacted" from="Gamba" to="." method="_on_gamba_interacted"]
+[connection signal="interacted" from="TavernKeep" to="." method="_on_tavern_keep_interacted"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://diu8r3p1aae0o"]
+
+[ext_resource type="Script" uid="uid://cva7qfyxfjabu" path="res://scripts/gamba/gamba_column_base.gd" id="1_jlueu"]
+[ext_resource type="PackedScene" uid="uid://cqhwgaxl3wj85" path="res://assets/gamba/row.tscn" id="2_j8ycc"]
+
+[node name="Column1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jlueu")
+
+[node name="Row0" parent="." instance=ExtResource("2_j8ycc")]
+layout_mode = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="Row1" parent="." instance=ExtResource("2_j8ycc")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 132.0
+offset_right = 4.0
+offset_bottom = 132.0
+rownum = 1
+
+[node name="Row2" parent="." instance=ExtResource("2_j8ycc")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 260.0
+offset_right = 4.0
+offset_bottom = 260.0
+rownum = 2
+
+[connection signal="rolled" from="." to="Row0" method="_on_column_1_rolled"]
+[connection signal="rolled" from="." to="Row1" method="_on_column_1_rolled"]
+[connection signal="rolled" from="." to="Row2" method="_on_column_1_rolled"]

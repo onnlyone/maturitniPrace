@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4kbmxd1mw3r7"]
+
+[ext_resource type="Script" uid="uid://0b5tlien6nt1" path="res://scripts/global/inventory.gd" id="1_tspnl"]
+
+[node name="inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tspnl")

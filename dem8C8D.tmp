@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxglw2s76t3at"]
+
+[ext_resource type="PackedScene" uid="uid://cebp81bqkshoq" path="res://assets/gamba.tscn" id="1_hnxuc"]
+[ext_resource type="PackedScene" uid="uid://co2picbflxqvb" path="res://assets/bar.tscn" id="2_4gsv1"]
+[ext_resource type="PackedScene" uid="uid://bdx0bx0w48ev4" path="res://assets/player.tscn" id="3_a7k8f"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_t8bq5"]
+[ext_resource type="PackedScene" uid="uid://bbnr0s5yr5w4m" path="res://assets/chair.tscn" id="5_bjktn"]
+[ext_resource type="Script" path="res://scripts/interact_chair.gd" id="6_67jls"]
+
+[node name="demo" type="Node3D"]
+
+[node name="Gamba" parent="." instance=ExtResource("1_hnxuc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+prompt_message = "Press E to lock in."
+
+[node name="Bar" parent="." instance=ExtResource("2_4gsv1")]
+
+[node name="Player" parent="." instance=ExtResource("3_a7k8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("4_t8bq5")
+
+[node name="Chair" parent="." instance=ExtResource("5_bjktn")]
+transform = Transform3D(0.677659, 0, 0.735376, 0, 1, 0, -0.735376, 0, 0.677659, 7.06917, 0, 3.37978)
+script = ExtResource("6_67jls")
+
+[connection signal="interacted" from="Chair" to="Chair" method="_on_interacted"]
+[connection signal="sit" from="Chair" to="Player" method="_on_chair_sit"]

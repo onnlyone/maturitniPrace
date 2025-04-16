@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://0odqjmwddx78"]
+
+[ext_resource type="PackedScene" uid="uid://bbnr0s5yr5w4m" path="res://assets/bar3d/chair.tscn" id="1_4614b"]
+[ext_resource type="Script" uid="uid://dngaclk5qd244" path="res://scripts/bar3d/3d_bar.gd" id="1_b8620"]
+[ext_resource type="Script" uid="uid://bijg3ljfvm31f" path="res://scripts/bar3d/interact_chair.gd" id="2_b8620"]
+[ext_resource type="PackedScene" uid="uid://bdx0bx0w48ev4" path="res://assets/bar3d/player.tscn" id="3_62l2s"]
+[ext_resource type="Script" uid="uid://cr26iej6blwm2" path="res://scripts/bar3d/player_movement.gd" id="4_6ekuw"]
+[ext_resource type="PackedScene" uid="uid://co2picbflxqvb" path="res://assets/bar3d/bar.tscn" id="5_huahx"]
+[ext_resource type="PackedScene" uid="uid://cebp81bqkshoq" path="res://assets/bar3d/gamba.tscn" id="6_ye2io"]
+
+[node name="bar3d" type="Node3D"]
+script = ExtResource("1_b8620")
+
+[node name="Chair" parent="." instance=ExtResource("1_4614b")]
+transform = Transform3D(0.677659, 0, 0.735376, 0, 1, 0, -0.735376, 0, 0.677659, 7.06917, 0, 3.37978)
+script = ExtResource("2_b8620")
+
+[node name="Player" parent="." instance=ExtResource("3_62l2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("4_6ekuw")
+
+[node name="Bar" parent="." instance=ExtResource("5_huahx")]
+
+[node name="Gamba" parent="." instance=ExtResource("6_ye2io")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 3.7)
+script = null
+
+[connection signal="interacted" from="Chair" to="Chair" method="_on_interacted"]
+[connection signal="sit" from="Chair" to="Player" method="_on_chair_sit"]

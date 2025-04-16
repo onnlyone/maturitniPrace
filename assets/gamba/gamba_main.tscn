@@ -1,0 +1,138 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjwo5he8k4ylm"]
+
+[ext_resource type="PackedScene" uid="uid://dmrvk0m2t0b2" path="res://assets/gamba/gamba_slotmachine.tscn" id="1_5i162"]
+[ext_resource type="Script" uid="uid://daswy3f6ixvso" path="res://scripts/gamba/gamba_main.gd" id="1_w151t"]
+[ext_resource type="Script" uid="uid://ddsgufi0fdt7q" path="res://scripts/gamba/score_board.gd" id="5_fofba"]
+[ext_resource type="Script" uid="uid://diku3up7mqleg" path="res://scripts/gamba/main_panel.gd" id="6_bxijw"]
+[ext_resource type="Script" uid="uid://dab36vi7dxxpu" path="res://scripts/global/goal_stats.gd" id="6_pwvca"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bxijw"]
+font_size = 60
+
+[node name="gambaMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w151t")
+
+[node name="gambaSlotmachine" parent="." instance=ExtResource("1_5i162")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.2, 1.2)
+
+[node name="scoreBoard" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 480.0
+offset_right = 800.0
+offset_bottom = 648.0
+script = ExtResource("5_fofba")
+
+[node name="ScoreAdd" type="Label" parent="scoreBoard"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 784.0
+offset_bottom = 48.0
+text = "+Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="scoreBoard"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 784.0
+offset_bottom = 112.0
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mainPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 800.0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("6_bxijw")
+
+[node name="GameOverScreen" type="Panel" parent="mainPanel"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = 240.0
+offset_right = 352.0
+offset_bottom = 400.0
+
+[node name="Lable" type="Label" parent="mainPanel/GameOverScreen"]
+layout_mode = 0
+offset_left = 64.0
+offset_right = 1088.0
+offset_bottom = 160.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_bxijw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RollNum" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 328.0
+offset_bottom = 47.0
+text = "RollNum"
+
+[node name="Goal" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 328.0
+offset_bottom = 95.0
+text = "Goal"
+autowrap_mode = 3
+
+[node name="Gold" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 192.0
+offset_right = 328.0
+offset_bottom = 215.0
+text = "Gold"
+
+[node name="GoalCount" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 128.0
+offset_right = 98.0
+offset_bottom = 151.0
+text = "GoalsMet"
+
+[node name="HighScore" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 424.0
+offset_right = 328.0
+offset_bottom = 447.0
+text = "HighScore"
+
+[node name="goalStats" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_pwvca")
+
+[connection signal="rolled" from="gambaSlotmachine" to="mainPanel" method="_on_gamba_slotmachine_rolled"]
+[connection signal="rolled" from="gambaSlotmachine" to="goalStats" method="_on_gamba_slotmachine_rolled"]
+[connection signal="lost" from="goalStats" to="gambaSlotmachine" method="_on_goal_stats_lost"]
+[connection signal="lost" from="goalStats" to="mainPanel" method="_on_goal_stats_lost"]
+[connection signal="lost" from="goalStats" to="goalStats" method="_on_lost"]

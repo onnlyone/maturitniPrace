@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://djwusihi8oqh6"]
+
+[ext_resource type="Script" uid="uid://dg48jqbj8ghb1" path="res://scripts/shop/shop.gd" id="1_v8g57"]
+[ext_resource type="PackedScene" uid="uid://dckqxyju5aom1" path="res://assets/shop/shop_item.tscn" id="2_joqlw"]
+[ext_resource type="PackedScene" uid="uid://cvdrbtwqs5gch" path="res://assets/shop/hover_tooltip.tscn" id="3_lxv6y"]
+[ext_resource type="PackedScene" uid="uid://d4kbmxd1mw3r7" path="res://assets/inventory/inventory.tscn" id="4_k4ejo"]
+
+[node name="shop" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+script = ExtResource("1_v8g57")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 64.0
+offset_right = 928.0
+offset_bottom = 512.0
+
+[node name="shopItem0" parent="." instance=ExtResource("2_joqlw")]
+position = Vector2(288, 128)
+scale = Vector2(2, 2)
+
+[node name="shopItem1" parent="." instance=ExtResource("2_joqlw")]
+position = Vector2(480, 128)
+scale = Vector2(2, 2)
+
+[node name="shopItem2" parent="." instance=ExtResource("2_joqlw")]
+position = Vector2(672, 128)
+scale = Vector2(2, 2)
+
+[node name="close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 80.0
+offset_right = 906.0
+offset_bottom = 111.0
+text = "Close"
+
+[node name="hoverTooltip" parent="." instance=ExtResource("3_lxv6y")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1136.0
+offset_right = 1136.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="reroll" type="Button" parent="."]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 336.0
+offset_right = 904.0
+offset_bottom = 368.0
+text = "Reroll: 10g"
+
+[node name="buy" type="Button" parent="."]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 336.0
+offset_right = 768.0
+offset_bottom = 368.0
+text = "Buy"
+
+[node name="inventory" parent="." instance=ExtResource("4_k4ejo")]
+
+[node name="Gold" type="Label" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 336.0
+offset_right = 624.0
+offset_bottom = 367.0
+text = "Gold"
+vertical_alignment = 1
+
+[connection signal="rerolled" from="shopItem0" to="." method="_on_shop_item_0_rerolled"]
+[connection signal="pressed" from="close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="reroll" to="shopItem0" method="_on_reroll_pressed"]
+[connection signal="pressed" from="reroll" to="shopItem1" method="_on_reroll_pressed"]
+[connection signal="pressed" from="reroll" to="shopItem2" method="_on_reroll_pressed"]
+[connection signal="pressed" from="buy" to="." method="_on_buy_pressed"]
